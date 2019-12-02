@@ -1,0 +1,106 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.shadow-top {
+    box-shadow: 0 -5px 5px -2px rgba(70, 70, 70, 0.2);
+}
+
+.shadow-right {
+    box-shadow: 5px 0 5px -2px rgba(70, 70, 70, 0.3);
+}
+
+.shadow-bottom {
+    box-shadow: 0 5px 5px 1px rgba(70, 70, 70, 0.2);
+}
+
+.shadow-left {
+    box-shadow: -5px 0 5px -2px rgba(70, 70, 70, 0.3);
+}
+
+.shadow-all {
+    box-shadow: 0 0 10px rgba(70, 70, 70, 0.2);
+}
+
+.glow-bottom-green {
+    box-shadow: 0 5px 5px 1px rgba(94, 255, 102, 0.425);
+}
+
+.title-bar{
+    height: 90px;
+    background-color: whitesmoke;
+    margin: 15px;
+    align-items: center;
+    display: flex;
+}
+
+.title-icon-circle{
+    background-color: rgb(255, 255, 255);
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    display: flex;
+    margin-left: 15px;
+}
+
+.title-icon{
+    font-size: 38px;
+    color: #3752B4;
+    margin: auto;
+}
+
+.search-box{
+    background-color: white;
+    width: 35%;
+    height: 40px;
+    margin: auto;
+    border-radius: 20px;
+    align-items: center;
+    display: flex;
+}
+
+.search-button{
+    width: 90px;
+    height: 40px;
+    background-color: rgb(82, 123, 255);
+    border-radius: 20px;
+    color: white;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    cursor: pointer;
+    border: 0;
+}
+
+.search-button:hover{
+    background-color: #3752B4;
+}
+
+.green-button{
+    width: 135px;
+    height: 30px;
+    background-color: rgb(110, 212, 110);
+    color: white;
+    border: 0;
+    border-radius: 5px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin-right: 15px;
+    cursor: pointer;
+}
+
+.green-button:hover{
+    background-color: rgb(98, 192, 98);
+}
+
+.list-header-bar{
+    display: flex;
+    align-items: center;
+    background-color: rgb(242, 247, 248);
+    height: 40px;
+    border-bottom: 1.5px solid rgb(241, 241, 241);
+    border-top: 1px solid white;
+    border-radius: 7px 7px 0 0;
+}

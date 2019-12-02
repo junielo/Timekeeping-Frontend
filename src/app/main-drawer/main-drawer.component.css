@@ -1,0 +1,89 @@
+.main-container {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.main-sidenav-container {
+    /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
+       causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
+    flex: 1;
+}
+
+.sideNavShow{
+    width: 230px;
+    transition: 0.4s all ease;
+    z-index: 2;
+    /* box-shadow: 5px 0 5px -5px #333; */
+}
+
+.sideNavHide{
+    width: 62px;
+    transition: 0.4s all ease;
+    z-index: 2;
+    /* box-shadow: 5px 0 5px -5px #333; */
+    overflow-x: hidden;
+}
+
+.btn_drawer {
+    color: #929292;
+    display: flex;
+    vertical-align: middle;
+    line-height: 30px;
+    cursor: pointer;
+    transition: 0.2s all ease;
+    position: relative;
+    max-height: 45px;
+}
+
+.btn_drawer:hover {
+    color: #444;
+    transition: 0.2s all ease;
+}
+
+.drawer_selected{
+    min-width: 8px;
+    height: 45px;
+}
+
+.drawer_img{
+    width: 25px;
+    height: 25px;
+    margin: 10px 15px;
+    color: rgb(82, 123, 255);
+}
+
+.drawer_text{
+    vertical-align: middle;
+    line-height: 45px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    transition: 0.4s all ease;
+    font-size: 15px;
+}
+
+.router_grow{
+    margin: 0;
+    transition: 0.4s all ease;
+}
+
+.router_shrink{
+    margin-left: 168px;
+    transition: 0.4s all ease;
+}
+
+.profile-pic{
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-shadow: 0 3px 8px rgba(44, 63, 238, 0.247); 
+    background-color: #cccccc;   
+    margin-left: auto;
+}

@@ -1,0 +1,49 @@
+<div class="main-container">
+
+    <mat-sidenav-container #drawer class="main-sidenav-container"
+    style="background-color: white">
+    <mat-sidenav [ngClass]="drawerShow ? 'sideNavShow' : 'sideNavHide'" mode="side" opened
+      (mouseenter)="drawerShow = true" (mouseleave)="drawerShow = drawerOpen">
+      <div style="overflow-x: hidden;">
+
+        <div class="btn_drawer" [routerLink]="['order-request']" (click)="btnId=1"
+          [ngStyle]="{'color':btnId===1?'#444444':'#929292'}">
+          <div class="drawer_selected" [ngStyle]="{'background-color':btnId===1?'#3752B4':'#f1f1f1'}"></div>
+          <div style="position: initial;">
+            <mat-icon class="drawer_img">account_circle</mat-icon>
+          </div>
+          <div [ngClass]="!drawerShow ? 'drawer_text div_hide' : 'drawer_text'">Employee List</div>
+        </div>
+
+        <div class="btn_drawer" [routerLink]="['analytics']" (click)="btnId=2"
+          [ngStyle]="{'color':btnId===1?'#444444':'#929292'}">
+          <div class="drawer_selected" [ngStyle]="{'background-color':btnId===2?'#3752B4':'#f1f1f1'}"></div>
+          <div style="position: initial;">
+            <mat-icon class="drawer_img">assignment</mat-icon>
+          </div>
+          <div [ngClass]="!drawerShow ? 'drawer_text div_hide' : 'drawer_text'">Leaves Data</div>
+        </div>
+
+      </div>
+
+    </mat-sidenav>
+    <!-- <mat-sidenav-content> -->
+    <div [ngClass]="{'router_grow':!drawerOpen, 'router_shrink':drawerOpen,
+        'router_dim':drawerShow && !drawerOpen}" style="background-color: rgb(234, 240, 241); height: 100%;">
+        <div class="shadow-bottom" style="width: 100%; height: 60px; display: flex; align-items: center; background-color: white;">
+            <button mat-icon-button style="margin-left: 15px;" (click)="drawerOpen=!drawerOpen; drawerShow=!drawerShow">
+                <mat-icon style="font-size: 32px; color: #3752B4;" inline=true>dehaze</mat-icon>
+            </button>
+            <div style="margin-left: 15px; font-size: 18px;">Employee Management</div>
+            <img [ngStyle]="{'background-image': 'url(' + imgUrl + ')'}" class="profile-pic">
+            <div style="margin-right: 15px; margin-left: 15px; align-items: center;">
+                <div style="margin-right: 15px; font-size: 14px;"><strong>John Doe</strong></div>
+                <div style="margin-right: 15px; font-size: 12px;">Administrator</div>
+            </div>
+        </div>
+      <router-outlet></router-outlet>
+    </div>
+
+  </mat-sidenav-container>
+
+</div>
