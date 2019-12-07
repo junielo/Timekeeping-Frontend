@@ -14,61 +14,58 @@
         <button class="search-button">Search</button>
     </form>
 
-    <button class="green-button glow-bottom-green">
+    <button class="green-button glow-bottom-green" (click)="formDialog(DIALOG_ADD)">
         <mat-icon style="font-size: 18px; width: 18px; height: 18px; margin-right: 5px;">person_add</mat-icon> <strong>Create New</strong>
     </button>
 
 </div>
 
-<div class="shadow-all" style="margin: 15px; background-color: white; height: calc(100% - 195px); border-radius: 7px;">
+<div class="shadow-all" style="margin: 15px; background-color: white; height: calc(100% - 195px); border-radius: 7px; display: flex; flex-direction: column;">
 
     <div class="list-header-bar">
-        <div style="width: 22.7%; margin-left: 25px; color: rgb(148, 148, 148); font-size: 16px;">
+        <div style="width: 19.5%;" class="list-header-text">
             <strong>Full Name</strong>
         </div>
         <mat-divider [vertical]="true" style="height: 75%;"></mat-divider>
-        <div style="width: 19.8%; margin-left: 25px; color: rgb(148, 148, 148); font-size: 16px;">
+        <div style="width: 17.2%;" class="list-header-text">
             <strong>Position</strong>
         </div>
         <mat-divider [vertical]="true" style="height: 75%;"></mat-divider>
-        <div style="width: 19.8%; margin-left: 25px; color: rgb(148, 148, 148); font-size: 16px;">
+        <div style="width: 10.2%;" class="list-header-text">
             <strong>Department</strong>
         </div>
         <mat-divider [vertical]="true" style="height: 70%;"></mat-divider>
-        <div style="width: 12.3%; margin-left: 25px; color: rgb(148, 148, 148); font-size: 16px;">
+        <div style="width: 10.2%;" class="list-header-text">
             <strong>Status</strong>
         </div>
         <mat-divider [vertical]="true" style="height: 70%;"></mat-divider>
-        <div style="width: 14%; margin-left: 25px; color: rgb(148, 148, 148); font-size: 16px;">
+        <div style="width: 10%;" class="list-header-text">
             <strong>Date Hired</strong>
         </div>
         <mat-divider [vertical]="true" style="height: 70%;"></mat-divider>
+        <div style="width: 32.9%;" class="list-header-text">
+            <strong>Actions</strong>
+        </div>
     </div>
 
-    <mat-table #table [dataSource]="dataSource">
-        <ng-container matColumnDef="name">
-            <mat-cell style="flex: 0.28" *matCellDef="let row">{{row.name}}</mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="position">
-            <mat-cell style="flex: 0.25" *matCellDef="let row">{{row.position}}</mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="status">
-            <mat-cell style="flex: 0.16" *matCellDef="let row">{{row.status}}</mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="hired">
-            <mat-cell style="flex: 0.4" *matCellDef="let row">{{row.date_employed | date}}</mat-cell>
-        </ng-container>
-
-        <ng-container>
-            <mat-cell style="flex: 0.8" *matCellDef="let row">
-
-            </mat-cell>
-        </ng-container>
-
-        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-    </mat-table>
+    <div style="overflow-y: scroll; flex: 1;">
+        <div *ngFor="let row of empList; let i = index" class="list-row-bar" [ngClass]="{'list-row-bar-gray': i%2!=0}">
+            <div style="width: 19.5%;" class="list-row-text">{{row.name}}</div>
+            <div style="width: 17.2%" class="list-row-text">{{row.position}}</div>
+            <div style="width: 10.2%; display: flex;" class="list-row-text">
+                <div *ngFor="let obj of row.depts; let x = index">{{obj.name}}{{x < row.depts.length-1?'/':''}}</div>
+            </div>
+            <div style="width: 10.2%" class="list-row-text">{{row.status}}</div>
+            <div style="width: 10%" class="list-row-text">{{row.date_employed | date}}</div>
+            <div style="width: 32.9%; display: flex;">
+                <button class="blue-button glow-bottom-blue" style="margin-left: 25px;" (click)="formDialog(DIALOG_EDIT)">
+                    <mat-icon style="font-size: 18px; width: 18px; height: 18px; margin-right: 5px;">edit</mat-icon> <strong>Edit</strong>
+                </button>
+                <button class="red-button glow-bottom-red">
+                    <mat-icon style="font-size: 18px; width: 18px; height: 18px; margin-right: 5px;">delete</mat-icon> <strong>Delete</strong>
+                </button>
+            </div>
+        </div>
+    </div>
 
 </div>

@@ -9,12 +9,14 @@ import { MainDrawerComponent } from './main-drawer/main-drawer.component';
 import { MaterialsModule } from './shared/materials.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { EmployeeDialogComponent } from './employee-main/employee-dialog/employee-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     EmployeeListComponent,
-    MainDrawerComponent
+    MainDrawerComponent,
+    EmployeeDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -26,6 +28,9 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    EmployeeDialogComponent
+  ]
 })
 export class AppModule { }

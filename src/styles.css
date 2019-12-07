@@ -27,6 +27,14 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     box-shadow: 0 5px 5px 1px rgba(94, 255, 102, 0.425);
 }
 
+.glow-bottom-blue {
+    box-shadow: 0 5px 5px 1px rgba(94, 169, 255, 0.425);
+}
+
+.glow-bottom-red {
+    box-shadow: 0 5px 5px 1px rgba(255, 140, 94, 0.425);
+}
+
 .title-bar{
     height: 90px;
     background-color: whitesmoke;
@@ -74,11 +82,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 
 .search-button:hover{
-    background-color: #3752B4;
+    background-color: rgb(55, 63, 180);
 }
 
 .green-button{
-    width: 135px;
     height: 30px;
     background-color: rgb(110, 212, 110);
     color: white;
@@ -88,11 +95,50 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     justify-content: center;
     display: flex;
     margin-right: 15px;
+    padding: 0 20px;
     cursor: pointer;
 }
 
 .green-button:hover{
     background-color: rgb(98, 192, 98);
+}
+
+.blue-button{
+    height: 30px;
+    background-color: rgb(110, 163, 212);
+    color: white;
+    border: 0;
+    border-radius: 5px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin-right: 15px;
+    padding-right: 20px;
+    padding-left: 15px;
+    cursor: pointer;
+}
+
+.blue-button:hover{
+    background-color: rgb(98, 145, 189);
+}
+
+.red-button{
+    height: 30px;
+    background-color: rgb(212, 110, 110);
+    color: white;
+    border: 0;
+    border-radius: 5px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin-right: 15px;
+    padding-right: 20px;
+    padding-left: 15px;
+    cursor: pointer;
+}
+
+.red-button:hover{
+    background-color: rgb(182, 95, 95);
 }
 
 .list-header-bar{
@@ -104,3 +150,32 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     border-top: 1px solid white;
     border-radius: 7px 7px 0 0;
 }
+
+.list-header-text{
+    margin-left: 25px;
+    color: rgb(148, 148, 148);
+    font-size: 16px;
+}
+
+.list-row-bar{
+    display: flex;
+    align-items: center;
+    height: 40px;
+}
+
+.list-row-bar:hover{
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    border: 1px solid rgb(178, 189, 228);
+}
+
+.list-row-bar-gray{
+    background-color: rgb(235, 235, 235);
+}
+
+.list-row-text{
+    font-size: 14px;
+    margin-left: 23px;
+}
+
