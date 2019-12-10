@@ -1,12 +1,72 @@
-<form action="submit">
+<form [formGroup]="formGroup" (submit)="submit()">
+
     <mat-form-field style="width: 300px">
-        <input matInput placeholder="First Name" autocomplete="off">
+        <input formControlName="fname" matInput placeholder="First Name" autocomplete="off">
     </mat-form-field>
+
     <mat-form-field style="width: 300px">
-        <input matInput placeholder="Middle Name" autocomplete="off">
+        <input formControlName="mname" matInput placeholder="Middle Name" autocomplete="off">
     </mat-form-field>
+
     <mat-form-field style="width: 300px">
-        <input matInput placeholder="Last Name" autocomplete="off">
+        <input formControlName="lname" matInput placeholder="Last Name" autocomplete="off">
+    </mat-form-field><br>
+
+    <mat-form-field style="width: 100%">
+        <mat-label>Department</mat-label>
+        <mat-select formControlName="department" multiple>
+            <mat-option *ngFor="let dept of department" [value]="dept">{{dept.name}} - {{dept.description}}</mat-option>
+        </mat-select>
     </mat-form-field>
+
+    <mat-form-field style="width: 300px">
+        <mat-label>Position</mat-label>
+        <mat-select formControlName="position_id">
+            <mat-option *ngFor="let pos of position" [value]="pos">
+            {{pos.name}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field style="width: 300px">
+        <mat-label>Status</mat-label>
+        <mat-select formControlName="status_id">
+            <mat-option *ngFor="let stat of employee_status" [value]="stat">
+            {{stat.name}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field style="width: 300px">
+        <input formControlName="vacation_num" type="number" matInput placeholder="Number of vacation leave" autocomplete="off">
+    </mat-form-field>
+
+    <mat-form-field style="width: 300px">
+        <input formControlName="sick_num" type="number" matInput placeholder="Number of sick leave" autocomplete="off">
+    </mat-form-field>
+
+    <mat-form-field style="width: 300px">
+        <input formControlName="date_employed" readonly matInput [matDatepicker]="picker" placeholder="Date employed">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field style="width: 300px">
+        <input formControlName="email" type="email" matInput placeholder="Email" autocomplete="off">
+    </mat-form-field>
+
+    <mat-form-field style="width: 300px">
+        <input formControlName="number" matInput placeholder="Phone Number" autocomplete="off">
+    </mat-form-field>
+
+    <mat-form-field style="width: 300px">
+        <input formControlName="birthdate" readonly matInput [matDatepicker]="picker2" placeholder="Birthdate">
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+    </mat-form-field>
+
+    <button class="blue-button glow-bottom-blue" style="margin: auto; padding-left: 30px; padding-right: 35px; height: 45px;">
+        <mat-icon style="font-size: 18px; width: 18px; height: 18px; margin-right: 10px;">edit</mat-icon> <strong>Edit</strong>
+    </button>
 </form>
 

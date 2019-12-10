@@ -14,7 +14,7 @@
         <button class="search-button">Search</button>
     </form>
 
-    <button class="green-button glow-bottom-green" (click)="formDialog(DIALOG_ADD)">
+    <button class="green-button glow-bottom-green" (click)="formDialog(0)">
         <mat-icon style="font-size: 18px; width: 18px; height: 18px; margin-right: 5px;">person_add</mat-icon> <strong>Create New</strong>
     </button>
 
@@ -58,7 +58,10 @@
             <div style="width: 10.2%" class="list-row-text">{{row.status}}</div>
             <div style="width: 10%" class="list-row-text">{{row.date_employed | date}}</div>
             <div style="width: 32.9%; display: flex;">
-                <button class="blue-button glow-bottom-blue" style="margin-left: 25px;" (click)="formDialog(DIALOG_EDIT)">
+                <button class="green-button glow-bottom-green" style="margin-left: 25px;" (click)="setLeave(row.id)">
+                    <mat-icon style="font-size: 18px; width: 18px; height: 18px; margin-right: 5px;">card_travel</mat-icon> <strong>Leave</strong>
+                </button>
+                <button class="blue-button glow-bottom-blue" (click)="formDialog(row.id)">
                     <mat-icon style="font-size: 18px; width: 18px; height: 18px; margin-right: 5px;">edit</mat-icon> <strong>Edit</strong>
                 </button>
                 <button class="red-button glow-bottom-red">

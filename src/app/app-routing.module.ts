@@ -5,8 +5,8 @@ import { Routes, RouterModule } from '@angular/router';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: '..', pathMatch: 'full' },
-  { path: '..', component: MainDrawerComponent,
+  { path: '', redirectTo: '', pathMatch: 'full' },
+  { path: '', component: MainDrawerComponent,
     children: [
       { path: '', redirectTo: 'employee-list', pathMatch: 'full' },
       { path: 'employee-list', component: EmployeeListComponent }

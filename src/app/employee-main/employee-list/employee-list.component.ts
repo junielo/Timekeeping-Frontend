@@ -1,5 +1,6 @@
+import { EmployeeLeaveComponent } from './../employee-leave/employee-leave.component';
 import { EmployeeDialogComponent } from './../employee-dialog/employee-dialog.component';
-import { ApiService, getEmployees } from './../../shared/api.service';
+import { ApiService, getEmployeesUrl } from './../../shared/api.service';
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource, MatDialog } from '@angular/material';
 
@@ -21,32 +22,39 @@ export class EmployeeListComponent implements OnInit {
 
   ngOnInit() {
     this.dataSource = new MatTableDataSource(this.empList);
-    this.api.get(getEmployees).subscribe(res => {
-      console.log(res)
-      this.empList = res.employee
-      this.dataSource.data = this.empList;
-    })
-
+    this.getData()
   }
 
-  // getDepts(depts){
-  //   let str = ""
-  //   for(let obj of depts; let x = index){
-  //     str += obj.name
-  //     if()
-  //   }
-  // }
+  getData(){
+    this.api.get(getEmployeesUrl).subscribe(res => {
+      console.log(res)
+      this.empList = res.employee
+      this.dataSource.data = this.empList
+    })
+  }
 
-  formDialog(action){
+  formDialog(id){
+
     const dialogRef = this.dialog.open(EmployeeDialogComponent, {
       width: '550px', height: '90%',
-      data: ''
+      data: id
     });
 
     dialogRef.afterClosed().subscribe(res => {
-      if (res) {
-        // this.orderPagination(this.paginator);
+      if (res === 'add') {
+        alert('Employee successfully added!')
+        this.getData()
+      }else if(res === 'edit'){
+        alert('Employee successfully updated!')
+        this.getData()
       }
+    })
+  }
+
+  setLeave(id){
+    this.dialog.open(EmployeeLeaveComponent, {
+      width: '800px', height: '90%',
+      data: id
     });
   }
 

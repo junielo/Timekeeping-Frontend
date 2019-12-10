@@ -48,7 +48,15 @@ export class ApiService {
       catchError(this.handleError<any>('post error'))
     )
   }
+  
+  put(url: string, body: any) {
+    return this.http.put<any>(url, body).pipe(
+      tap((result: any) => this.log(`post data from ${url}`)),
+      catchError(this.handleError<any>('post error'))
+    )
+  }
 }
 
 export const HTTP_API_URL = "http://localhost:8090/";
-export const getEmployees = HTTP_API_URL + 'employees'
+export const getEmployeesUrl = HTTP_API_URL + 'employees'
+export const getDropdownUrl = HTTP_API_URL + 'dropdown'

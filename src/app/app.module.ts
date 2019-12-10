@@ -10,13 +10,15 @@ import { MaterialsModule } from './shared/materials.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { EmployeeDialogComponent } from './employee-main/employee-dialog/employee-dialog.component';
+import { EmployeeLeaveComponent } from './employee-main/employee-leave/employee-leave.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     EmployeeListComponent,
     MainDrawerComponent,
-    EmployeeDialogComponent
+    EmployeeDialogComponent,
+    EmployeeLeaveComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +32,8 @@ import { EmployeeDialogComponent } from './employee-main/employee-dialog/employe
   providers: [],
   bootstrap: [AppComponent],
   entryComponents: [
-    EmployeeDialogComponent
+    EmployeeDialogComponent,
+    EmployeeLeaveComponent
   ]
 })
 export class AppModule { }
