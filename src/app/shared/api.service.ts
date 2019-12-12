@@ -55,8 +55,19 @@ export class ApiService {
       catchError(this.handleError<any>('post error'))
     )
   }
+
+  delete(url: string, body: any) {
+    return this.http.post<any>(url, body).pipe(
+      tap((result: any) => this.log(`post data from ${url}`)),
+      catchError(this.handleError<any>('post error'))
+    )
+  }
 }
 
 export const HTTP_API_URL = "http://localhost:8090/";
 export const getEmployeesUrl = HTTP_API_URL + 'employees'
 export const getDropdownUrl = HTTP_API_URL + 'dropdown'
+export const getNumLeaveUrl = HTTP_API_URL + 'leave_remaining'
+export const addLeavesUrl = HTTP_API_URL + 'leaves'
+export const deleteEmplyeeUrl = HTTP_API_URL + 'deleteEmplyee'
+export const deleteLeaveUrl = HTTP_API_URL + 'deleteLeave'

@@ -1,6 +1,6 @@
 import { EmployeeLeaveComponent } from './../employee-leave/employee-leave.component';
 import { EmployeeDialogComponent } from './../employee-dialog/employee-dialog.component';
-import { ApiService, getEmployeesUrl } from './../../shared/api.service';
+import { ApiService, getEmployeesUrl, deleteEmplyeeUrl } from './../../shared/api.service';
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource, MatDialog } from '@angular/material';
 
@@ -56,6 +56,16 @@ export class EmployeeListComponent implements OnInit {
       width: '800px', height: '90%',
       data: id
     });
+  }
+
+  delete(id){
+    if(!confirm('Do you really want to delete this employee?')) return
+    this.api.delete(deleteEmplyeeUrl, {id: id}).subscribe(res => {
+      if(res.success){
+        alert('Employee successfully deleted!')
+        this.getData()
+      }
+    })
   }
 
 }

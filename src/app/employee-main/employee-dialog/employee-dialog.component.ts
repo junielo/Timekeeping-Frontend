@@ -8,7 +8,6 @@ import * as _moment from 'moment';
 import { DatePipe } from '@angular/common';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 
-const moment = _moment;
 export const MY_FORMATS = {
   parse: {
     dateInput: 'LL',

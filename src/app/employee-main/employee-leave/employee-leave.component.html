@@ -7,20 +7,20 @@
 
         <div>
             <div style="margin-left: 15px; font-size: 18px; color: #3752B4;">{{data?.name}}</div>
-            <div style="margin-left: 15px; font-size: 12px; color: rgb(92, 92, 92);">Remaining Leave: 2</div>
+            <div style="margin-left: 15px; font-size: 12px; color: rgb(92, 92, 92);">Remaining Leave: {{remNum}}</div>
         </div>
 
         <div style="flex: 1; align-items: center; justify-content: center; display: flex;">
             <mat-form-field>
                 <mat-label>Leave Type</mat-label>
-                <mat-select [(ngModel)]="leave">
+                <mat-select [(ngModel)]="leave" (selectionChange)="onLeaveChange()">
                     <mat-option value="sick">Sick</mat-option>
                     <mat-option value="vacation">Vacation</mat-option>
                 </mat-select>
             </mat-form-field>
         </div>
 
-        <button class="green-button glow-bottom-green" (click)="formDialog(0)">
+        <button class="green-button glow-bottom-green" (click)="create()">
             <mat-icon style="font-size: 18px; width: 18px; height: 18px; margin-right: 5px; margin-left: auto;">
                 person_add</mat-icon> <strong>Create Leave</strong>
         </button>
@@ -30,54 +30,90 @@
     <div style="flex: 1; display: flex;">
         <mat-tab-group style="flex: 1;">
             <mat-tab label="Leave List" style="height: 100%;">
-                    <div class="shadow-all"
-                        style="margin: 15px; background-color: white; height: calc(100% - 30px); border-radius: 7px; display: flex; flex-direction: column;">
+                <div class="shadow-all"
+                    style="margin: 15px; background-color: white; height: calc(100% - 30px); border-radius: 7px; display: flex; flex-direction: column;">
 
-                        <div class="list-header-bar">
-                            <div style="width: 40%;" class="list-header-text">
-                                <strong>Reason</strong>
+                    <div class="list-header-bar">
+                        <div style="width: 40%;" class="list-header-text">
+                            <strong>Reason</strong>
+                        </div>
+                        <mat-divider [vertical]="true" style="height: 75%;"></mat-divider>
+                        <div style="width: 25%;" class="list-header-text">
+                            <strong>Date</strong>
+                        </div>
+                        <mat-divider [vertical]="true" style="height: 70%;"></mat-divider>
+                        <div style="flex: 1; display: flex; align-items: center;" class="list-header-text">
+                            <strong>Actions</strong>
+                            <button (click)="addLeave()" mat-mini-fab color="primary"
+                                style="margin-left: auto; margin-right: 25px; width: 30px; height: 30px;">
+                                <mat-icon style="font-size: 16px;">exposure_plus_1</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div style="flex: 1;">
+                        <div *ngFor="let row of tmp_leave; let i = index" class="list-row-bar" style="height: 80px;"
+                            [ngClass]="{'list-row-bar-gray': i%2!=0}">
+                            <div style="width: 40%; margin-left: 25px;" class="list-row-text">
+                                <mat-form-field style="width: 100%;">
+                                    <textarea [(ngModel)]="row.reason" matInput
+                                        placeholder="Reason of leave"></textarea>
+                                </mat-form-field>
                             </div>
-                            <mat-divider [vertical]="true" style="height: 75%;"></mat-divider>
-                            <div style="width: 25%;" class="list-header-text">
-                                <strong>Date</strong>
+                            <div style="width: 25%; margin-left: 30px;" class="list-row-text">
+                                <mat-form-field style="width: 90%;">
+                                    <input [(ngModel)]="row.date" readonly matInput [matDatepicker]="picker"
+                                        placeholder="Leave Date">
+                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker></mat-datepicker>
+                                </mat-form-field>
                             </div>
-                            <mat-divider [vertical]="true" style="height: 70%;"></mat-divider>
-                            <div style="flex: 1; display: flex; align-items: center;" class="list-header-text">
-                                <strong>Actions</strong>
-                                <button (click)="addLeave()" mat-mini-fab color="primary" style="margin-left: auto; margin-right: 25px;">
-                                    <mat-icon>exposure_plus_1</mat-icon>
+                            <div style="flex: 1; display: flex; margin-left: 20px;">
+                                <button class="red-button glow-bottom-red" (click)="deleteLeave(i)">
+                                    <mat-icon style="font-size: 18px; width: 18px; height: 18px; margin-right: 5px;">
+                                        delete</mat-icon> <strong>Delete</strong>
                                 </button>
                             </div>
                         </div>
+                    </div>
 
-                        <div style="overflow-y: scroll; flex: 1;">
-                            <div *ngFor="let row of tmp_leave; let i = index" class="list-row-bar" style="height: 80px;" [ngClass]="{'list-row-bar-gray': i%2!=0}">
-                                <div style="width: 40%; margin-left: 25px;" class="list-row-text">
-                                    <mat-form-field style="width: 100%;">
-                                        <textarea [(ngModel)]="row.reason" matInput placeholder="Reason of leave"></textarea>
-                                    </mat-form-field>
-                                </div>
-                                <div style="width: 25%; margin-left: 30px;" class="list-row-text">
-                                    <mat-form-field style="width: 90%;">
-                                        <input [(ngModel)]="row.date" readonly matInput [matDatepicker]="picker" placeholder="Leave Date">
-                                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                                        <mat-datepicker #picker></mat-datepicker>
-                                    </mat-form-field>
-                                </div>
-                                <div style="flex: 1; display: flex; margin-left: 30px;">
-                                    <button class="red-button glow-bottom-red">
-                                        <mat-icon
-                                            style="font-size: 18px; width: 18px; height: 18px; margin-right: 5px;">
-                                            delete</mat-icon> <strong>Delete</strong>
-                                    </button>
-                                </div>
+                </div>
+            </mat-tab>
+            <mat-tab label="Leave History" style="height: 100%;">
+                    <div class="shadow-all"
+                    style="margin: 15px; background-color: white; height: calc(100% - 30px); border-radius: 7px; display: flex; flex-direction: column;">
+
+                    <div class="list-header-bar">
+                        <div style="width: 40%;" class="list-header-text">
+                            <strong>Reason</strong>
+                        </div>
+                        <mat-divider [vertical]="true" style="height: 75%;"></mat-divider>
+                        <div style="width: 25%;" class="list-header-text">
+                            <strong>Date</strong>
+                        </div>
+                        <mat-divider [vertical]="true" style="height: 70%;"></mat-divider>
+                        <div style="flex: 1; display: flex; align-items: center;" class="list-header-text">
+                            <strong>Actions</strong>
+                        </div>
+                    </div>
+
+                    <div style="flex: 1;">
+                        <div *ngFor="let row of leave_record; let i = index" class="list-row-bar" style="height: 80px;"
+                            [ngClass]="{'list-row-bar-gray': i%2!=0}">
+                            <div style="width: 40%; margin-left: 25px;" class="list-row-text">
+                                {{row?.reason}}
+                            </div>
+                            <div style="width: 25%; margin-left: 25px;" class="list-row-text">
+                                {{row?.sched_date | date}}
+                            </div>
+                            <div style="flex: 1; display: flex; margin-left: 25px;">
+                                <button class="red-button glow-bottom-red" (click)="delete(row.id)">
+                                    <mat-icon style="font-size: 18px; width: 18px; height: 18px; margin-right: 5px;">
+                                        delete</mat-icon> <strong>Cancel</strong>
+                                </button>
                             </div>
                         </div>
-
                     </div>
-            </mat-tab>
-            <mat-tab label="Leave History">
-                <div style="height: 100%;">
 
                 </div>
             </mat-tab>
