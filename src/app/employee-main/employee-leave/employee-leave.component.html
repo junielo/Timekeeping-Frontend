@@ -7,7 +7,24 @@
 
         <div>
             <div style="margin-left: 15px; font-size: 18px; color: #3752B4;">{{data?.name}}</div>
-            <div style="margin-left: 15px; font-size: 12px; color: rgb(92, 92, 92);">Remaining Leave: {{remNum}}</div>
+            <div style="display: flex; align-items: center;">
+                <div *ngIf="isLeaveEdit==false" style="margin-left: 15px; font-size: 12px; color: rgb(92, 92, 92);">
+                    Remaining Leave: {{remNum}}</div>
+                <input #qtyLeaves value="1" type="number" [hidden]="!isLeaveEdit"
+                    style="width: 62px; margin-left: 10px; padding-left: 10px;">
+                <div (click)="addNumLeave(qtyLeaves.value)"
+                    [matTooltip]="!isLeaveEdit?'Add more leaves':'Save value to be added'" matTooltipPosition="above"
+                    class="blue-button glow-bottom-blue"
+                    style="width: 12px; height: 10px; margin-left: 10px; padding-top: 12px; padding-bottom: 0; padding-left: 5px; padding-right: 5px;">
+                    <mat-icon style="font-size: 12px; width: 12px; height: 12x;">{{!isLeaveEdit?'add':'check'}}
+                    </mat-icon>
+                </div>
+                <div *ngIf="isLeaveEdit==true" (click)="isLeaveEdit = false" matTooltip="Cancel adding leaves"
+                    matTooltipPosition="above" class="red-button glow-bottom-red"
+                    style="width: 12px; height: 10px; padding-top: 12px; padding-bottom: 0; padding-left: 5px; padding-right: 5px;">
+                    <mat-icon style="font-size: 12px; width: 12px; height: 12x;">clear</mat-icon>
+                </div>
+            </div>
         </div>
 
         <div style="flex: 1; align-items: center; justify-content: center; display: flex;">
@@ -29,7 +46,10 @@
 
     <div style="flex: 1; display: flex;">
         <mat-tab-group style="flex: 1;">
-            <mat-tab label="Leave List" style="height: 100%;">
+            <mat-tab style="height: 100%;">
+                <ng-template matTabLabel>
+                    <span [matBadge]="tmp_leave.length" matBadgeOverlap="false">Leave List</span>
+                </ng-template>
                 <div class="shadow-all"
                     style="margin: 15px; background-color: white; height: calc(100% - 30px); border-radius: 7px; display: flex; flex-direction: column;">
 
@@ -45,6 +65,7 @@
                         <div style="flex: 1; display: flex; align-items: center;" class="list-header-text">
                             <strong>Actions</strong>
                             <button (click)="addLeave()" mat-mini-fab color="primary"
+                                matTooltip="Add leave information" matTooltipPosition="above"
                                 style="margin-left: auto; margin-right: 25px; width: 30px; height: 30px;">
                                 <mat-icon style="font-size: 16px;">exposure_plus_1</mat-icon>
                             </button>
@@ -79,8 +100,11 @@
 
                 </div>
             </mat-tab>
-            <mat-tab label="Leave History" style="height: 100%;">
-                    <div class="shadow-all"
+            <mat-tab style="height: 100%;">
+                <ng-template matTabLabel>
+                    <span [matBadge]="leave_record.length" matBadgeOverlap="false">Leave History</span>
+                </ng-template>
+                <div class="shadow-all"
                     style="margin: 15px; background-color: white; height: calc(100% - 30px); border-radius: 7px; display: flex; flex-direction: column;">
 
                     <div class="list-header-bar">

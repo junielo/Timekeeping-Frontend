@@ -3,6 +3,7 @@ import { EmployeeDialogComponent } from './../employee-dialog/employee-dialog.co
 import { ApiService, getEmployeesUrl, deleteEmplyeeUrl } from './../../shared/api.service';
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource, MatDialog } from '@angular/material';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-employee-list',
@@ -11,25 +12,31 @@ import { MatTableDataSource, MatDialog } from '@angular/material';
 })
 export class EmployeeListComponent implements OnInit {
   
-  dataSource: MatTableDataSource<any>;
-  displayedColumns = ['name', 'position', 'department', 'status', 'hired'];
+  formGroup: FormGroup
+  
   empList: any[] = []
 
   DIALOG_ADD = 1
   DIALOG_EDIT = 2
 
-  constructor(private api: ApiService, public dialog: MatDialog) { }
+  constructor(private api: ApiService, public dialog: MatDialog, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
-    this.dataSource = new MatTableDataSource(this.empList);
+    this.formGroup = this.formBuilder.group({
+      search: ['']
+    })
     this.getData()
+  }
+
+  submit(){
+    this.api.get(getEmployeesUrl+"?search="+this.formGroup.controls['search'].value).subscribe(res => {
+      this.empList = res.employee
+    })
   }
 
   getData(){
     this.api.get(getEmployeesUrl).subscribe(res => {
-      console.log(res)
       this.empList = res.employee
-      this.dataSource.data = this.empList
     })
   }
 

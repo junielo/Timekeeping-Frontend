@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
-import { ApiService, getEmployeesUrl, getNumLeaveUrl, addLeavesUrl, deleteLeaveUrl } from 'src/app/shared/api.service';
+import { ApiService, getEmployeesUrl, getNumLeaveUrl, addLeavesUrl, deleteLeaveUrl, addNumLeaveUrl } from 'src/app/shared/api.service';
 import {MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS} from '@angular/material-moment-adapter';
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
 
@@ -44,6 +44,7 @@ export class EmployeeLeaveComponent implements OnInit {
   sick_list: any = []
   leave_record: any = []
   remNum: number
+  isLeaveEdit: boolean = false
 
   constructor(@Inject(MAT_DIALOG_DATA) id, public dialogRef: MatDialogRef<EmployeeLeaveComponent>, private api: ApiService) { 
     this.id = id
@@ -87,6 +88,23 @@ export class EmployeeLeaveComponent implements OnInit {
     
     this.tmp_leave.push(body)
 
+  }
+
+  isAddingAddLeave: boolean = false
+  addNumLeave(num){
+    console.log(num)
+    if(this.isAddingAddLeave) return
+    if(!this.isLeaveEdit) this.isLeaveEdit = true
+    else{
+      if(confirm("Are you sure you want to add this leave quantity?")){
+        this.isAddingAddLeave = true
+        this.api.post(addNumLeaveUrl, {id: this.id, type: this.leave, qty: num}).subscribe(res => {
+          this.getRemaining()
+          this.isAddingAddLeave = false
+          this.isLeaveEdit = false
+        })
+      }
+    }
   }
 
   deleteLeave(i:number){

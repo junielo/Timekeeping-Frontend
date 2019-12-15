@@ -6,10 +6,10 @@
 
     <div style="margin-left: 15px; font-size: 18px; color: #3752B4;">Employee List</div>
 
-    <form class="shadow-bottom search-box">
+    <form class="shadow-bottom search-box" [formGroup]="formGroup" (submit)="submit()">
         <mat-icon style="width: 22px; height: 22px; margin-left: 15px; color: rgb(173, 173, 173);">search</mat-icon>
         <mat-form-field style="flex: 1; margin-left: 5px; margin-right: 5px;">
-            <input matInput placeholder="Search Employee" autocomplete="off">
+            <input formControlName="search" matInput placeholder="Search Employee" autocomplete="off">
         </mat-form-field>
         <button class="search-button">Search</button>
     </form>
