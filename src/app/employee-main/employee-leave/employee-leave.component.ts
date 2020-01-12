@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
-import { ApiService, getEmployeesUrl, getNumLeaveUrl, addLeavesUrl, deleteLeaveUrl, addNumLeaveUrl } from 'src/app/shared/api.service';
+import { ApiService, getEmployeesUrl, getNumLeaveUrl, addLeavesUrl, deleteLeaveUrl, addNumLeaveUrl, getLeavesByYearUrl } from 'src/app/shared/api.service';
 import {MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS} from '@angular/material-moment-adapter';
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
 
@@ -46,6 +46,11 @@ export class EmployeeLeaveComponent implements OnInit {
   remNum: number
   isLeaveEdit: boolean = false
 
+  selectedIndex: number = 0
+  mLeaveYears: any[]
+  selYear: number
+  selStat: string = 'all'
+
   constructor(@Inject(MAT_DIALOG_DATA) id, public dialogRef: MatDialogRef<EmployeeLeaveComponent>, private api: ApiService) { 
     this.id = id
   }
@@ -55,7 +60,15 @@ export class EmployeeLeaveComponent implements OnInit {
       this.data = res.employee[0]
     })
     this.getRemaining()
-    this.getData()
+    this.getYearLeaves()
+  }
+
+  getYearLeaves(){
+    this.api.post(getLeavesByYearUrl, {id: this.id, type: this.leave}).subscribe(res => {
+      this.mLeaveYears = res.response
+      this.selYear = this.mLeaveYears[0].years
+      this.getData()
+    })
   }
 
   getRemaining(){
@@ -143,7 +156,7 @@ export class EmployeeLeaveComponent implements OnInit {
   }
 
   getData(){
-    this.api.post(addLeavesUrl, {id: this.id, type: this.leave}).subscribe(res => {
+    this.api.post(addLeavesUrl, {id: this.id, type: this.leave, year: this. selYear, stat: this.selStat}).subscribe(res => {
       this.leave_record = res.response
       console.log(this.leave_record)
     })

@@ -11,6 +11,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { EmployeeDialogComponent } from './employee-main/employee-dialog/employee-dialog.component';
 import { EmployeeLeaveComponent } from './employee-main/employee-leave/employee-leave.component';
+import { LeaveSummaryComponent } from './print-forms/leave-summary/leave-summary.component';
+import { LoginPageComponent } from './login-page/login-page.component';
+import { SettingsMainComponent } from './settings-main/settings-main.component';
+import { EmployeeAccountComponent } from './settings-main/employee-account/employee-account.component';
+import { DepartmentComponent } from './settings-main/department/department.component';
+import { PositionComponent } from './settings-main/position/position.component';
+import { EmployeeStatusComponent } from './settings-main/employee-status/employee-status.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +25,14 @@ import { EmployeeLeaveComponent } from './employee-main/employee-leave/employee-
     EmployeeListComponent,
     MainDrawerComponent,
     EmployeeDialogComponent,
-    EmployeeLeaveComponent
+    EmployeeLeaveComponent,
+    LeaveSummaryComponent,
+    LoginPageComponent,
+    SettingsMainComponent,
+    EmployeeAccountComponent,
+    DepartmentComponent,
+    PositionComponent,
+    EmployeeStatusComponent
   ],
   imports: [
     BrowserModule,

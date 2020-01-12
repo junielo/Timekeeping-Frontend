@@ -31,6 +31,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     box-shadow: 0 5px 5px 1px rgba(94, 169, 255, 0.425);
 }
 
+.glow-top-blue {
+    box-shadow: 0 -7px 5px -1px rgba(94, 169, 255, 0.425);
+}
+
 .glow-bottom-red {
     box-shadow: 0 5px 5px 1px rgba(255, 140, 94, 0.425);
 }
@@ -182,4 +186,13 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .mat-tab-body-wrapper{
     flex-grow: 1;
+}
+
+.card-list{
+    margin: 15px;
+    background-color: white;
+    height: calc(100% - 195px);
+    border-radius: 7px;
+    display: flex;
+    flex-direction: column;
 }

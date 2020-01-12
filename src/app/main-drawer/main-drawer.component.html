@@ -6,7 +6,7 @@
       (mouseenter)="drawerShow = true" (mouseleave)="drawerShow = drawerOpen">
       <div style="overflow-x: hidden;">
 
-        <div class="btn_drawer" [routerLink]="['order-request']" (click)="btnId=1"
+        <div class="btn_drawer" [routerLink]="['employee-list']"
           [ngStyle]="{'color':btnId===1?'#444444':'#929292'}">
           <div class="drawer_selected" [ngStyle]="{'background-color':btnId===1?'#3752B4':'#f1f1f1'}"></div>
           <div style="position: initial;">
@@ -15,13 +15,21 @@
           <div [ngClass]="!drawerShow ? 'drawer_text div_hide' : 'drawer_text'">Employee List</div>
         </div>
 
-        <div class="btn_drawer" [routerLink]="['analytics']" (click)="btnId=2"
-          [ngStyle]="{'color':btnId===1?'#444444':'#929292'}">
+        <div class="btn_drawer" [routerLink]="['settings']"
+          [ngStyle]="{'color':btnId===2?'#444444':'#929292'}">
           <div class="drawer_selected" [ngStyle]="{'background-color':btnId===2?'#3752B4':'#f1f1f1'}"></div>
           <div style="position: initial;">
-            <mat-icon class="drawer_img">assignment</mat-icon>
+            <mat-icon class="drawer_img">build</mat-icon>
           </div>
-          <div [ngClass]="!drawerShow ? 'drawer_text div_hide' : 'drawer_text'">Leaves Data</div>
+          <div [ngClass]="!drawerShow ? 'drawer_text div_hide' : 'drawer_text'">Settings</div>
+        </div>
+
+        <div class="btn_drawer" (click)="logout()" [ngStyle]="{'color':btnId===0?'#444444':'#929292'}">
+          <div class="drawer_selected" [ngStyle]="{'background-color':btnId===0?'#3752B4':'#f1f1f1'}"></div>
+          <div style="position: initial;">
+            <mat-icon class="drawer_img">meeting_room</mat-icon>
+          </div>
+          <div [ngClass]="!drawerShow ? 'drawer_text div_hide' : 'drawer_text'">Logout</div>
         </div>
 
       </div>
@@ -34,11 +42,12 @@
             <button mat-icon-button style="margin-left: 15px;" (click)="drawerOpen=!drawerOpen; drawerShow=!drawerShow">
                 <mat-icon style="font-size: 32px; color: #3752B4;" inline=true>dehaze</mat-icon>
             </button>
-            <div style="margin-left: 15px; font-size: 18px;">Employee Management</div>
+            <div style="margin-left: 15px; font-size: 18px;">{{toolbarTitle}}</div>
+            <mat-icon style="margin-left: auto; margin-right: 25px; color: rgb(82, 123, 255);" matBadge="3" matBadgeColor="accent">notifications</mat-icon>
             <img [ngStyle]="{'background-image': 'url(' + imgUrl + ')'}" class="profile-pic">
             <div style="margin-right: 15px; margin-left: 15px; align-items: center;">
-                <div style="margin-right: 15px; font-size: 14px;"><strong>John Doe</strong></div>
-                <div style="margin-right: 15px; font-size: 12px;">Administrator</div>
+                <div style="margin-right: 15px; font-size: 14px;"><strong>{{fullname}}</strong></div>
+                <div style="margin-right: 15px; font-size: 12px;">{{department}}</div>
             </div>
         </div>
       <router-outlet></router-outlet>

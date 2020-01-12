@@ -1,0 +1,39 @@
+<div class="title-bar">
+
+    <div class="title-icon-circle shadow-bottom">
+        <mat-icon class="title-icon" style="width: 38px; height: 38px;">subject</mat-icon>
+    </div>
+
+    <div style="margin-left: 15px; font-size: 18px; color: #3752B4;">{{toolbarTitle}}</div>
+
+    <form class="shadow-bottom search-box" [formGroup]="formGroup" (submit)="submit()">
+        <mat-icon style="width: 22px; height: 22px; margin-left: 15px; color: rgb(173, 173, 173);">search</mat-icon>
+        <mat-form-field style="flex: 1; margin-left: 5px; margin-right: 5px;">
+            <input formControlName="search" matInput [placeholder]="searchTitle" autocomplete="off">
+        </mat-form-field>
+        <button class="search-button">Search</button>
+    </form>
+
+    <button class="green-button glow-bottom-green" (click)="formDialog(0)">
+        <mat-icon style="font-size: 18px; width: 18px; height: 18px; margin-right: 5px;">person_add</mat-icon> <strong>Create New</strong>
+    </button>
+
+</div>
+
+<div style="display: grid; grid-template-columns: 420px auto; height: calc(100% - 195px);">
+    <div>
+
+        <div class="shadow-all card-list" style="margin-top: 0; padding-top: 10px;">
+            <div class="btn_drawer" [ngStyle]="{'color':btnId===1?'#444444':'#929292'}" [routerLink]="['employee-account']">Employee Account</div>
+            <div class="btn_drawer" [ngStyle]="{'color':btnId===2?'#444444':'#929292'}" [routerLink]="['department']">Department</div>
+            <div class="btn_drawer" [ngStyle]="{'color':btnId===3?'#444444':'#929292'}" [routerLink]="['position']">Position</div>
+            <div class="btn_drawer" [ngStyle]="{'color':btnId===4?'#444444':'#929292'}" [routerLink]="['employee-status']">Employee Status</div>
+        </div>
+
+    </div>
+
+    <div class="shadow-all card-list" style="margin-top: 0; margin-left: 0; height: 100%;">
+        <router-outlet></router-outlet>
+    </div>
+
+</div>

@@ -20,18 +20,18 @@
 
 </div>
 
-<div class="shadow-all" style="margin: 15px; background-color: white; height: calc(100% - 195px); border-radius: 7px; display: flex; flex-direction: column;">
+<div class="shadow-all card-list">
 
     <div class="list-header-bar">
         <div style="width: 19.5%;" class="list-header-text">
             <strong>Full Name</strong>
         </div>
         <mat-divider [vertical]="true" style="height: 75%;"></mat-divider>
-        <div style="width: 17.2%;" class="list-header-text">
+        <div style="width: 20%;" class="list-header-text">
             <strong>Position</strong>
         </div>
         <mat-divider [vertical]="true" style="height: 75%;"></mat-divider>
-        <div style="width: 10.2%;" class="list-header-text">
+        <div style="width: 12%;" class="list-header-text">
             <strong>Department</strong>
         </div>
         <mat-divider [vertical]="true" style="height: 70%;"></mat-divider>
@@ -39,7 +39,7 @@
             <strong>Status</strong>
         </div>
         <mat-divider [vertical]="true" style="height: 70%;"></mat-divider>
-        <div style="width: 10%;" class="list-header-text">
+        <div style="width: 15%;" class="list-header-text">
             <strong>Date Hired</strong>
         </div>
         <mat-divider [vertical]="true" style="height: 70%;"></mat-divider>
@@ -51,12 +51,12 @@
     <div style="overflow-y: scroll; flex: 1;">
         <div *ngFor="let row of empList; let i = index" class="list-row-bar" [ngClass]="{'list-row-bar-gray': i%2!=0}">
             <div style="width: 19.5%;" class="list-row-text">{{row.name}}</div>
-            <div style="width: 17.2%" class="list-row-text">{{row.position}}</div>
-            <div style="width: 10.2%; display: flex;" class="list-row-text">
+            <div style="width: 20%" class="list-row-text">{{row.position}}</div>
+            <div style="width: 12%; display: flex;" class="list-row-text">
                 <div *ngFor="let obj of row.depts; let x = index">{{obj.name}}{{x < row.depts.length-1?'/':''}}</div>
             </div>
             <div style="width: 10.2%" class="list-row-text">{{row.status}}</div>
-            <div style="width: 10%" class="list-row-text">{{row.date_employed | date}}</div>
+            <div style="width: 15%" class="list-row-text">{{row.date_employed | date}}</div>
             <div style="width: 32.9%; display: flex;">
                 <button class="green-button glow-bottom-green" style="margin-left: 25px;" (click)="setLeave(row.id)">
                     <mat-icon style="font-size: 18px; width: 18px; height: 18px; margin-right: 5px;">card_travel</mat-icon> <strong>Leave</strong>
@@ -64,9 +64,9 @@
                 <button class="blue-button glow-bottom-blue" (click)="formDialog(row.id)">
                     <mat-icon style="font-size: 18px; width: 18px; height: 18px; margin-right: 5px;">edit</mat-icon> <strong>Edit</strong>
                 </button>
-                <button class="red-button glow-bottom-red" (click)="delete(row.id)">
+                <!-- <button class="red-button glow-bottom-red" (click)="delete(row.id)">
                     <mat-icon style="font-size: 18px; width: 18px; height: 18px; margin-right: 5px;">delete</mat-icon> <strong>Delete</strong>
-                </button>
+                </button> -->
             </div>
         </div>
     </div>

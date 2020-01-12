@@ -1,0 +1,15 @@
+<div style="width: 100%; height: 100%; display: flex; flex-direction: column;">
+    <div style="height: 15px; background-color: rgb(82, 123, 255);" class="glow-bottom-blue"></div>
+    <form style="margin: auto;" [formGroup]="formGroup" (submit)="submit()">
+        <mat-form-field style="width: 280px;">
+            <input formControlName="username" matInput placeholder="Username">
+        </mat-form-field><br>
+        <mat-form-field style="width: 280px;">
+            <input formControlName="password" matInput placeholder="Password" type="password">
+        </mat-form-field>
+        <button class="blue-button glow-bottom-blue">
+            <mat-icon style="font-size: 18px; width: 18px; height: 18px; margin-right: 5px;">meeting_room</mat-icon> <strong>Login</strong>
+        </button>
+    </form>
+    <div style="height: 15px; background-color: rgb(82, 123, 255);" class="glow-top-blue"></div>
+</div>

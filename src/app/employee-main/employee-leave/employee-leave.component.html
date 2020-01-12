@@ -44,8 +44,9 @@
 
     </div>
 
-    <div style="flex: 1; display: flex;">
-        <mat-tab-group style="flex: 1;">
+    <div style="flex: 1; display: flex; position: relative;">
+        
+        <mat-tab-group [(selectedIndex)]="selectedIndex" style="flex: 1;">
             <mat-tab style="height: 100%;">
                 <ng-template matTabLabel>
                     <span [matBadge]="tmp_leave.length" matBadgeOverlap="false">Leave List</span>
@@ -117,7 +118,7 @@
                         </div>
                         <mat-divider [vertical]="true" style="height: 70%;"></mat-divider>
                         <div style="flex: 1; display: flex; align-items: center;" class="list-header-text">
-                            <strong>Actions</strong>
+                            <strong>Actions/Status</strong>
                         </div>
                     </div>
 
@@ -142,5 +143,28 @@
                 </div>
             </mat-tab>
         </mat-tab-group>
+
+        <button class="blue-button glow-bottom-blue"  style="z-index: 10; position: absolute; right: 250px; top: 10px;">
+            <mat-icon style="font-size: 18px; width: 18px; height: 18px; margin-right: 5px; margin-left: auto;">
+                print</mat-icon> <strong>Print</strong>
+        </button>
+        
+        <mat-form-field style="z-index: 10; position: absolute; right: 130px; width: 120px;">
+            <mat-label>Select Year</mat-label>
+            <mat-select [(ngModel)]="selYear" (selectionChange)="onLeaveChange()">
+                <mat-option *ngFor="let y of mLeaveYears" [value]="y.years">{{y.years}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        
+        <mat-form-field style="z-index: 10; position: absolute; right: 0; width: 120px;">
+            <mat-label>Select Status</mat-label>
+            <mat-select [(ngModel)]="selStat" (selectionChange)="this.getData()">
+                <mat-option value="all">All</mat-option>
+                <mat-option value="pending">Pending</mat-option>
+                <mat-option value="approved">Approved</mat-option>
+                <mat-option value="cancelled">Cancelled</mat-option>
+            </mat-select>
+        </mat-form-field>
+
     </div>
 </div>
