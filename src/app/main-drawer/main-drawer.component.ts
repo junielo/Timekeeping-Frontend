@@ -29,12 +29,16 @@ export class MainDrawerComponent implements OnInit {
       this.router.navigate(['./login'])
     }
     let url = this.router.url
-    if(url.includes('employee-list')) {
+    if(url.includes('dashboard')) {
       this.btnId = 1
+      this.toolbarTitle = 'Dashboard'
+    }
+    else if(url.includes('employee-list')) {
+      this.btnId = 2
       this.toolbarTitle = 'Employee Management'
     }
     else if(url.includes('settings')) {
-      this.btnId = 2
+      this.btnId = 3
       this.toolbarTitle = 'System Setup'
     }
     this.router.events.pipe(
@@ -42,12 +46,16 @@ export class MainDrawerComponent implements OnInit {
       takeUntil(this.destroyed)
     ).subscribe((res) => {
       let tmp: any = res;
-      if(tmp.urlAfterRedirects.includes('employee-list')) {
+      if(tmp.urlAfterRedirects.includes('dashboard')) {
         this.btnId = 1
+        this.toolbarTitle = 'Dashboard'
+      }
+      else if(tmp.urlAfterRedirects.includes('employee-list')) {
+        this.btnId = 2
         this.toolbarTitle = 'Employee Management'
       }
       else if(tmp.urlAfterRedirects.includes('settings')) {
-        this.btnId = 2
+        this.btnId = 3
         this.toolbarTitle = 'System Setup'
       }
     });

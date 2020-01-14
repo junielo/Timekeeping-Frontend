@@ -1,3 +1,4 @@
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { EmployeeStatusComponent } from './settings-main/employee-status/employee-status.component';
 import { PositionComponent } from './settings-main/position/position.component';
 import { DepartmentComponent } from './settings-main/department/department.component';
@@ -16,7 +17,8 @@ const routes: Routes = [
   { path: 'login', component: LoginPageComponent },
   { path: 'main', component: MainDrawerComponent,
     children: [
-      { path: '', redirectTo: 'employee-list', pathMatch: 'full' },
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+      { path: 'dashboard', component: DashboardComponent },
       { path: 'employee-list', component: EmployeeListComponent },
       { path: 'settings', component: SettingsMainComponent,
         children: [

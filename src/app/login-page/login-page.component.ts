@@ -34,6 +34,7 @@ export class LoginPageComponent implements OnInit {
       password: this.formGroup.controls['password'].value
     }
     this.api.post(loginUrl, body). subscribe(res => {
+      console.log(res)
       if(!res.success){
         alert('User not found')
         return

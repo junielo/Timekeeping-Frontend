@@ -6,9 +6,18 @@
       (mouseenter)="drawerShow = true" (mouseleave)="drawerShow = drawerOpen">
       <div style="overflow-x: hidden;">
 
-        <div class="btn_drawer" [routerLink]="['employee-list']"
+        <div class="btn_drawer" [routerLink]="['dashboard']"
           [ngStyle]="{'color':btnId===1?'#444444':'#929292'}">
           <div class="drawer_selected" [ngStyle]="{'background-color':btnId===1?'#3752B4':'#f1f1f1'}"></div>
+          <div style="position: initial;">
+            <mat-icon class="drawer_img">dashboard</mat-icon>
+          </div>
+          <div [ngClass]="!drawerShow ? 'drawer_text div_hide' : 'drawer_text'">Dashboard</div>
+        </div>
+
+        <div class="btn_drawer" [routerLink]="['employee-list']"
+          [ngStyle]="{'color':btnId===2?'#444444':'#929292'}">
+          <div class="drawer_selected" [ngStyle]="{'background-color':btnId===2?'#3752B4':'#f1f1f1'}"></div>
           <div style="position: initial;">
             <mat-icon class="drawer_img">account_circle</mat-icon>
           </div>
@@ -16,8 +25,8 @@
         </div>
 
         <div class="btn_drawer" [routerLink]="['settings']"
-          [ngStyle]="{'color':btnId===2?'#444444':'#929292'}">
-          <div class="drawer_selected" [ngStyle]="{'background-color':btnId===2?'#3752B4':'#f1f1f1'}"></div>
+          [ngStyle]="{'color':btnId===3?'#444444':'#929292'}">
+          <div class="drawer_selected" [ngStyle]="{'background-color':btnId===3?'#3752B4':'#f1f1f1'}"></div>
           <div style="position: initial;">
             <mat-icon class="drawer_img">build</mat-icon>
           </div>

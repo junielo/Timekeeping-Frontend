@@ -1,1 +1,2 @@
-<router-outlet></router-outlet>
+<router-outlet *ngIf="isPrepareDbSuccess"></router-outlet>
+<div *ngIf="!isPrepareDbSuccess">PREPARING DATABASES</div>

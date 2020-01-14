@@ -18,6 +18,7 @@ import { EmployeeAccountComponent } from './settings-main/employee-account/emplo
 import { DepartmentComponent } from './settings-main/department/department.component';
 import { PositionComponent } from './settings-main/position/position.component';
 import { EmployeeStatusComponent } from './settings-main/employee-status/employee-status.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { EmployeeStatusComponent } from './settings-main/employee-status/employe
     EmployeeAccountComponent,
     DepartmentComponent,
     PositionComponent,
-    EmployeeStatusComponent
+    EmployeeStatusComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
