@@ -84,7 +84,7 @@
                             </div>
                             <div style="width: 25%; margin-left: 30px;" class="list-row-text">
                                 <mat-form-field style="width: 90%;">
-                                    <input [(ngModel)]="row.date" readonly matInput [matDatepicker]="picker"
+                                    <input (ngModelChange)="checkDate($event)" [(ngModel)]="row.date" readonly matInput [matDatepicker]="picker"
                                         placeholder="Leave Date">
                                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                                     <mat-datepicker #picker></mat-datepicker>
@@ -132,10 +132,12 @@
                                 {{row?.sched_date | date}}
                             </div>
                             <div style="flex: 1; display: flex; margin-left: 25px;">
-                                <button class="red-button glow-bottom-red" (click)="delete(row.id)">
+                                <button class="red-button glow-bottom-red" (click)="delete(row.id)" *ngIf="row?.stats === 'pending'">
                                     <mat-icon style="font-size: 18px; width: 18px; height: 18px; margin-right: 5px;">
                                         delete</mat-icon> <strong>Cancel</strong>
                                 </button>
+                                <div *ngIf="row?.stats === 'cancelled'" class="text-red">Cancelled</div>
+                                <div *ngIf="row?.stats === 'approved'" class="text-blue">Approved</div>
                             </div>
                         </div>
                     </div>
@@ -144,14 +146,14 @@
             </mat-tab>
         </mat-tab-group>
 
-        <button class="blue-button glow-bottom-blue"  style="z-index: 10; position: absolute; right: 250px; top: 10px;">
+        <button (click)="printForm()" class="blue-button glow-bottom-blue"  style="z-index: 10; position: absolute; right: 250px; top: 10px;">
             <mat-icon style="font-size: 18px; width: 18px; height: 18px; margin-right: 5px; margin-left: auto;">
                 print</mat-icon> <strong>Print</strong>
         </button>
         
         <mat-form-field style="z-index: 10; position: absolute; right: 130px; width: 120px;">
             <mat-label>Select Year</mat-label>
-            <mat-select [(ngModel)]="selYear" (selectionChange)="onLeaveChange()">
+            <mat-select [(ngModel)]="selYear" (selectionChange)="onYearChange()">
                 <mat-option *ngFor="let y of mLeaveYears" [value]="y.years">{{y.years}}</mat-option>
             </mat-select>
         </mat-form-field>

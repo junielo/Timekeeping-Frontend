@@ -25,6 +25,7 @@ export class MainDrawerComponent implements OnInit {
 
   ngOnInit() {
     let currentUser = JSON.parse(sessionStorage.getItem('user'))
+    console.log("CURRENTUSER", currentUser)
     if(currentUser == null) {
       this.router.navigate(['./login'])
     }

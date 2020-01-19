@@ -1,3 +1,4 @@
+import { PrintLeaveService } from './../../shared/print-leave.service';
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { ApiService, getEmployeesUrl, getNumLeaveUrl, addLeavesUrl, deleteLeaveUrl, addNumLeaveUrl, getLeavesByYearUrl } from 'src/app/shared/api.service';
@@ -6,6 +7,7 @@ import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/
 
 import * as _moment from 'moment';
 import { DatePipe } from '@angular/common';
+import { Router } from '@angular/router';
 
 export const MY_FORMATS = {
   parse: {
@@ -51,7 +53,7 @@ export class EmployeeLeaveComponent implements OnInit {
   selYear: number
   selStat: string = 'all'
 
-  constructor(@Inject(MAT_DIALOG_DATA) id, public dialogRef: MatDialogRef<EmployeeLeaveComponent>, private api: ApiService) { 
+  constructor(@Inject(MAT_DIALOG_DATA) id, public dialogRef: MatDialogRef<EmployeeLeaveComponent>, private api: ApiService, private printer: PrintLeaveService) { 
     this.id = id
   }
 
@@ -86,6 +88,10 @@ export class EmployeeLeaveComponent implements OnInit {
       this.vacation_list = this.tmp_leave
       this.tmp_leave = this.sick_list
     }
+    this.getYearLeaves()
+  }
+
+  onYearChange(){
     this.getData()
   }
 
@@ -130,6 +136,12 @@ export class EmployeeLeaveComponent implements OnInit {
       return
     }
     for(let tmp of this.tmp_leave) {
+      let today = new Date();
+      today.setDate(today.getDate() + 6)
+      if(tmp.date < today){
+        alert('Invalid leave date please check and try again')
+        return
+      }
       tmp.date = new DatePipe('en-US').transform(tmp.date, 'yyyy-MM-dd')
       tmp.type = this.leave
       tmp.id = this.id
@@ -150,7 +162,7 @@ export class EmployeeLeaveComponent implements OnInit {
         }
         alert('Leave successfully added!')
         this.getRemaining()
-        this.getData()
+        this.getYearLeaves()
       }
     })
   }
@@ -166,8 +178,25 @@ export class EmployeeLeaveComponent implements OnInit {
     if(!confirm('Do you really want to delete this leave?')) return
     this.api.delete(deleteLeaveUrl, {id:id}).subscribe(res => {
       this.getRemaining()
-      this.getData()
+      this.getYearLeaves()
     })
+  }
+
+  checkDate(d){
+    let today = new Date();
+    today.setDate(today.getDate() + 6)
+    if(d > today){
+      console.log("Valid Date")
+    }else{
+      console.log("Invalid Date")
+      alert('Invalid date please try again')
+    }
+  }
+
+  printForm(){
+    sessionStorage.setItem("print_leave", JSON.stringify(this.leave_record))
+    this.dialogRef.close(false)
+    this.printer.printDocument()
   }
 
 }

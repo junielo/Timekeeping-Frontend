@@ -1,0 +1,8 @@
+.mcard-list{
+    margin: 15px;
+    background-color: white;
+    max-height: 300px;
+    border-radius: 7px;
+    display: flex;
+    flex-direction: column;
+}

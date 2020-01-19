@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { PrintLeaveService } from 'src/app/shared/print-leave.service';
 
 @Component({
   selector: 'app-leave-summary',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LeaveSummaryComponent implements OnInit {
 
-  constructor() { }
+  print_leave = JSON.parse(sessionStorage.getItem('print_leave'))
+
+  constructor(private printer: PrintLeaveService) { }
 
   ngOnInit() {
+    console.log("LeaveSummaryComponent", this.print_leave)
+    this.printer.onDataReady()
   }
 
 }

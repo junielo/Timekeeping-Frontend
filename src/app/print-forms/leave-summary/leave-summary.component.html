@@ -1,1 +1,13 @@
-<p>leave-summary works!</p>
+<div *ngFor="let row of print_leave" class="main_row">
+
+    <div>
+        <div><strong>{{row.name}}</strong></div>
+        <div style="text-transform: capitalize;">{{row.stats}}</div>
+        <div>{{row.sched_date | date}}</div>
+    </div>
+
+    <div>
+        {{row.reason}}
+    </div>
+
+</div>

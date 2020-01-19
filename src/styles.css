@@ -145,6 +145,15 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     background-color: rgb(182, 95, 95);
 }
 
+.text-red{
+    color: rgb(212, 110, 110);
+    text-shadow: 2px 2px rgba(255, 140, 94, 0.425);
+}
+.text-blue{
+    color: rgb(110, 163, 212);
+    text-shadow: 2px 2px rgba(94, 169, 255, 0.425);
+}
+
 .list-header-bar{
     display: flex;
     align-items: center;
